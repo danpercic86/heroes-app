@@ -23,4 +23,12 @@ export class HeroesComponent {
     id: 1,
     name: 'Windstorm',
   };
+
+  /**
+   * All public methods of a component class are automatically available in the template
+   * This is a method that will be called when the HeroDetailsComponent's (heroChange) event is emitted
+   */
+  onHeroChange(hero: Hero) {
+    this.hero = hero;
+  }
 }

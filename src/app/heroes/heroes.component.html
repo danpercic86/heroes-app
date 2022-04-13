@@ -3,4 +3,16 @@
 <!-- [target]="value" is called Property Binding -->
 <!-- To bind to an element's property, enclose it in [], which identifies the property as a target property. -->
 <!-- A target property is the DOM property to which you want to assign a value -->
+<!-- (see: https://angular.io/guide/property-binding) -->
 <app-hero-details [hero]="hero"></app-hero-details>
+
+<!-- (target)="statement" is called Event Binding -->
+<!-- The Angular event binding syntax consists of a target event name within () to the left of an equal sign, -->
+<!-- and a quoted template statement to the right. -->
+<!-- (see: https://angular.io/guide/event-binding) -->
+<!-- In the following example, the target event name is heroChange and the template statement is onHeroChange() -->
+<app-hero-details (heroChange)="onHeroChange($event)" [hero]="hero"></app-hero-details>
+<!-- The $event object is used to access data emitted from child components. -->
+
+<!--A shorthand for the above is to use direct assignment, as in the following example:-->
+<app-hero-details (heroChange)="hero = $event" [hero]="hero"></app-hero-details>
