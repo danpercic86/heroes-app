@@ -6,12 +6,15 @@
   <!-- heroes - Holds the mock heroes list from the HeroesComponent class -->
   <!-- hero - Template variable that the current hero object for each iteration through the list -->
   <li *ngFor="let hero of heroes">
-    <!-- (target)="statement" is called Event Binding -->
-    <!-- The Angular event binding syntax consists of a target event name within () to the left of an equal sign, -->
-    <!-- and a quoted template statement to the right. -->
-    <!-- (see: https://angular.io/guide/event-binding) -->
-    <button (click)="onSelect(hero)" type="button">
-      <span class="badge">{{hero.id}}</span> {{hero.name}}
+    <!-- Angular's class binding can add and remove a CSS class conditionally -->
+    <!-- Add [class.some-css-class]="some-condition" to the element you want to style -->
+
+    <!-- In this example, when the current row hero is the same as the selectedHero, Angular adds the selected CSS class -->
+    <!-- When the two heroes are different, Angular removes the class -->
+    <!-- (see: https://angular.io/guide/attribute-binding#class-binding) -->
+    <button (click)="onSelect(hero)" [class.selected]="hero === selectedHero" type="button">
+      <span class="badge">{{hero.id}}</span>
+      <span class="name">{{hero.name}}</span>
     </button>
   </li>
 </ul>
