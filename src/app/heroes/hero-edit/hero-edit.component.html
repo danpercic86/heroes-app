@@ -14,5 +14,10 @@
 
 <label for="website">Website: </label>
 <input [formControl]="website" id="website" type="text">
+<div *ngIf="website.errors">
+  <div [hidden]="!website.errors['required']">
+    Website is required
+  </div>
+</div>
 
-<button (click)="save()">Save</button>
+<button (click)="isValid && save()" [disabled]="!isValid">Save</button>
