@@ -25,4 +25,10 @@ export class HeroesComponent {
     { id: 13, name: 'Bombasto' },
     { id: 14, name: 'Celeritas' },
   ];
+
+  selectedHero?: Hero;
+
+  onSelect(hero: Hero) {
+    this.selectedHero = hero;
+  }
 }

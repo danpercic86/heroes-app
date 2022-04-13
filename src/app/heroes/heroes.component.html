@@ -6,6 +6,16 @@
   <!-- heroes - Holds the mock heroes list from the HeroesComponent class -->
   <!-- hero - Template variable that the current hero object for each iteration through the list -->
   <li *ngFor="let hero of heroes">
-    <span class="badge">{{hero.id}}</span> {{hero.name}}
+    <!-- (target)="statement" is called Event Binding -->
+    <!-- The Angular event binding syntax consists of a target event name within () to the left of an equal sign, -->
+    <!-- and a quoted template statement to the right. -->
+    <!-- (see: https://angular.io/guide/event-binding) -->
+    <button (click)="onSelect(hero)" type="button">
+      <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </button>
   </li>
 </ul>
+
+<!-- [target]="value" is called Property Binding -->
+<!-- To bind to an element's property, enclose it in [], which identifies the property as a target property. -->
+<app-hero-details [hero]="selectedHero"></app-hero-details>

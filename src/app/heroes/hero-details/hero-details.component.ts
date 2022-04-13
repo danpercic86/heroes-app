@@ -12,7 +12,7 @@ export class HeroDetailsComponent {
    * In this case, the hero property receives a Hero object from the HeroesComponent
    * (see: https://angular.io/guide/inputs-outputs#sharing-data-between-child-and-parent-directives-and-components)
    */
-  @Input() hero!: Hero;
+  @Input() hero?: Hero;
 
   /**
    * The @Output() decorator in a child component or directive lets data flow from the child to the parent.
