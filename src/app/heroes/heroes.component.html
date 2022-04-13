@@ -7,7 +7,7 @@
   <!-- When a new value is emitted, the async pipe marks the component to be checked for changes. -->
   <!-- When the component gets destroyed, the async pipe unsubscribes automatically to avoid potential memory leaks. -->
   <!-- When the reference of the expression changes, the async pipe automatically unsubscribes from the old Observable or Promise and subscribes to the new one.-->
-  <li *ngFor="let hero of heroes$ | async">
+  <li *ngFor="let hero of heroes">
     <!-- You can also use routerLink="/heroes/{{hero.id}}" as an alternative to (click)="onSelect(hero)".-->
     <button (click)="onSelect(hero)" type="button">
       <span class="badge">{{hero.id}}</span>

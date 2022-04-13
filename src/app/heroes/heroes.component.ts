@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from './models/hero.model';
-import { HeroesApiService } from './heroes-api.service';
-import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 /**
  @Component is a decorator function that specifies the Angular metadata for the component (such as styles, templates, and selector).
@@ -22,13 +20,13 @@ export class HeroesComponent implements OnInit {
   /**
    * All public properties of a component class are automatically available in the template
    */
-  heroes$: Observable<Hero[]>;
+  heroes: Hero[] = [];
 
-  constructor(private heroesApiService: HeroesApiService, private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router) {
     /**
-     * Assign the observable to the heroes$ property and subscribe to it in template using async pipe
+     * Retrieve resolved data from the route using the heroes key
      */
-    this.heroes$ = this.heroesApiService.getHeroes();
+    this.heroes = this.route.snapshot.data['heroes'];
   }
 
   /**

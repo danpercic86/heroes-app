@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeroesComponent } from './heroes.component';
 import { RouterModule } from '@angular/router';
+import { HeroesResolver } from './heroes.resolver';
 
 
 @NgModule({
@@ -19,6 +20,13 @@ import { RouterModule } from '@angular/router';
       {
         path: '',
         component: HeroesComponent,
+        /**
+         * Fetch data before the component is loaded and store it in the heroes key
+         *
+         */
+        resolve: {
+          heroes: HeroesResolver,
+        },
         /**
          * An array of child Route objects that specifies a nested route configuration.
          * The following route specifies that when navigating to, for example, /heroes/11,
