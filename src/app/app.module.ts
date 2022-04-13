@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { FormsModule } from '@angular/forms';
+import { HeroDetailsComponent } from './heroes/hero-details/hero-details.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { FormsModule } from '@angular/forms';
      * Angular CLI by default declared HeroesComponent in the AppModule when it generated that component.
      */
     HeroesComponent,
+    HeroDetailsComponent,
   ],
   imports: [
     BrowserModule,

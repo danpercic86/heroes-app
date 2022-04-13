@@ -1,0 +1,21 @@
+<!-- {{ }} is called interpolation. Interpolation refers to embedding expressions into marked up text  -->
+<!-- Angular replaces hero.name with the string value of the corresponding component property -->
+<!-- In this case, the value is Windstorm (see: https://angular.io/guide/interpolation) -->
+<h2>{{hero.name}} Details</h2>
+
+<div>
+  <span>id: </span> {{hero.id}}
+</div>
+
+<div>
+  <!-- The word uppercase in the interpolation binding, right after the pipe (|) character, activates the built-in UppercasePipe -->
+  <!-- Pipes are a good way to format strings, currency amounts, dates and other display data -->
+  <!-- Angular ships with several built-in pipes and you can create your own (see: https://angular.io/guide/pipes) -->
+  <!-- Built-in: DatePipe, LowercasePipe, UppercasePipe, TitlecasePipe, CurrencyPipe, DecimalPipe, PercentPipe -->
+  <label for="name">{{'Hero name:' | uppercase}} </label> <!-- HERO NAME: will be printed in HTML -->
+
+  <!-- [(ngModel)] is Angular's two-way data binding syntax (see: https://angular.io/guide/two-way-binding) -->
+  <!-- Here it binds the hero.name property to the HTML textbox so that data can flow in both directions: -->
+  <!-- from the hero.name property to the textbox and from the textbox back to the hero.name-->
+  <input [(ngModel)]="hero.name" id="name" placeholder="name">
+</div>
