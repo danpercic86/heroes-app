@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HeroesComponent } from './heroes/heroes.component';
-import { HeroDetailsComponent } from './heroes/hero-details/hero-details.component';
 
 /**
  * Routes tell the Router which view to display when a user clicks a link or pastes a URL into the browser address bar.
@@ -9,21 +7,11 @@ import { HeroDetailsComponent } from './heroes/hero-details/hero-details.compone
  */
 const routes: Routes = [{
   path: 'heroes',
-  component: HeroesComponent,
   /**
-   * An array of child Route objects that specifies a nested route configuration.
-   * The following route specifies that when navigating to, for example, /heroes/11,
-   * the router creates the 'HeroesComponent' with the 'HeroDetailComponent' child in it.
+   * Lazy loading speeds up application load time by splitting the application into multiple bundles and loading them on demand.
+   * To use lazy loading, provide the loadChildren property in the Route object, instead of the children property.
    */
-  children: [
-    {
-      /**
-       * Use ":" to specify a parameter.
-       */
-      path: ':id',
-      component: HeroDetailsComponent,
-    },
-  ],
+  loadChildren: () => import('./heroes/heroes.module').then(m => m.HeroesModule),
 }];
 
 @NgModule({
