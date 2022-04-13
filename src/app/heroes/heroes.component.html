@@ -1,3 +1,12 @@
 <!-- The HTML that HeroesComponent will render -->
 
-<p>heroes works!</p>
+<!-- {{ }} is called interpolation. Interpolation refers to embedding expressions into marked up text  -->
+<!-- Angular replaces hero.name with the string value of the corresponding component property. -->
+<!-- In this case, the value is Windstorm.  -->
+<h2>{{hero.name}} Details</h2>
+<div>
+  <span>id: </span> {{hero.id}}
+</div>
+<div>
+  <span>name: </span> {{hero.name}}
+</div>
