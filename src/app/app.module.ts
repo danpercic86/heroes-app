@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { FormsModule } from '@angular/forms';
 import { HeroDetailsComponent } from './heroes/hero-details/hero-details.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HeroDetailsComponent } from './heroes/hero-details/hero-details.compone
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule, // <-- import HttpClientModule when you want to use HttpClient
     FormsModule, // <-- import the FormsModule before binding with [(ngModel)]
   ],
   providers: [],

@@ -1,5 +1,9 @@
 <h2>My Heroes</h2>
 
+<!-- [target]="value" is called Property Binding -->
+<!-- To bind to an element's property, enclose it in [], which identifies the property as a target property. -->
+<app-hero-details [hero]="selectedHero"></app-hero-details>
+
 <ul class="heroes">
   <!-- The *ngFor is Angular's repeater directive. It repeats the host element for each element in a list -->
   <!-- <li> - the host element -->
@@ -18,7 +22,3 @@
     </button>
   </li>
 </ul>
-
-<!-- [target]="value" is called Property Binding -->
-<!-- To bind to an element's property, enclose it in [], which identifies the property as a target property. -->
-<app-hero-details [hero]="selectedHero"></app-hero-details>
