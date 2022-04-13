@@ -59,4 +59,8 @@ export class HeroesApiService {
       tap(heroes => this.heroes = heroes),
     );
   }
+
+  updateHero(updatedHero: Hero) {
+    this.heroes = this.heroes.map(hero => hero.id === updatedHero.id ? updatedHero : hero);
+  }
 }

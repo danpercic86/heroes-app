@@ -1,1 +1,18 @@
-<p>hero-edit works!</p>
+<h2>Edit {{hero.name}}</h2>
+
+<!-- After you create the control in the component class, you must associate it with a form control element in the template. -->
+<!-- Update the template with the form control using the formControl binding provided by FormControlDirective, -->
+<!-- which is also included in the ReactiveFormsModule -->
+<label for="name">Name: </label>
+<input [formControl]="name" id="name" type="text">
+
+<!-- Using the template binding syntax, the form control is now registered to the city input element in the template. -->
+<!-- The form control and DOM element communicate with each other: the view reflects changes in the model, -->
+<!-- and the model reflects changes in the view -->
+<label for="city">City: </label>
+<input [formControl]="city" id="city" type="text">
+
+<label for="website">Website: </label>
+<input [formControl]="website" id="website" type="text">
+
+<button (click)="save()">Save</button>
