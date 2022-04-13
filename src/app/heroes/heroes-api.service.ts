@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Hero } from './models/hero.model';
+import { of, tap } from 'rxjs';
 
 /**
  * @Injectable() decorator marks the class as one that participates in the dependency injection system.
@@ -23,6 +24,8 @@ export class HeroesApiService {
    * Services are a great way to share information among classes that don't know each other.
    */
 
+  heroes: Hero[] = [];
+
   /**
    * To be able to make requests to the server, we need to inject an HttpClient object and use it
    */
@@ -41,11 +44,19 @@ export class HeroesApiService {
    * In practice, it will only return a single hero array
    * (see: https://angular.io/guide/http#communicating-with-backend-services-using-http)
    */
-  getHeroes() {
+  loadHeroes() {
+    if (this.heroes.length) {
+      return of(this.heroes);
+    }
     /**
      * this.http.get returns the body of the response as an untyped JSON object by default.
      * Applying the optional type specifier, <Hero[]> , adds TypeScript capabilities, which reduce errors during compile time.
      */
-    return this.http.get<Hero[]>('https://retoolapi.dev/7LV5Tg/heroes');
+    return this.http.get<Hero[]>('https://retoolapi.dev/7LV5Tg/heroes').pipe(
+      /**
+       * This tap will ensure that we cache the heroes array in the service so that we won't have to make the same request again.
+       */
+      tap(heroes => this.heroes = heroes),
+    );
   }
 }

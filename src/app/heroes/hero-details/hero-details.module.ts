@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HeroDetailsComponent } from './hero-details.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { HeroDetailsGuard } from './hero-details.guard';
 
 
 @NgModule({
@@ -17,6 +18,10 @@ import { FormsModule } from '@angular/forms';
       {
         path: '',
         component: HeroDetailsComponent,
+        /**
+         * The defined guard function is provided as part of the Route object in the router configuration:
+         */
+        canActivate: [HeroDetailsGuard],
       },
     ]),
   ],

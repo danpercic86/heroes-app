@@ -25,6 +25,6 @@ export class HeroesResolver implements Resolve<Hero[]> {
    * This method retrieves the data needed to activate the requested route.
    */
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Hero[]> {
-    return this.heroesApiService.getHeroes();
+    return this.heroesApiService.loadHeroes();
   }
 }

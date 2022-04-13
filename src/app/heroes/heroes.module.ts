@@ -27,20 +27,13 @@ import { HeroesResolver } from './heroes.resolver';
         resolve: {
           heroes: HeroesResolver,
         },
+      },
+      {
         /**
-         * An array of child Route objects that specifies a nested route configuration.
-         * The following route specifies that when navigating to, for example, /heroes/11,
-         * the router creates the 'HeroesComponent' with the 'HeroDetailComponent' child in it.
+         * Use ":" to specify a parameter.
          */
-        children: [
-          {
-            /**
-             * Use ":" to specify a parameter.
-             */
-            path: ':id',
-            loadChildren: () => import('./hero-details/hero-details.module').then(m => m.HeroDetailsModule),
-          },
-        ],
+        path: ':id',
+        loadChildren: () => import('./hero-details/hero-details.module').then(m => m.HeroDetailsModule),
       },
     ]),
   ],
