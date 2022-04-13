@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from './models/hero.model';
 import { HeroesApiService } from './heroes-api.service';
+import { Observable } from 'rxjs';
 
 /**
  @Component is a decorator function that specifies the Angular metadata for the component (such as styles, templates, and selector).
@@ -20,10 +21,14 @@ export class HeroesComponent implements OnInit {
   /**
    * All public properties of a component class are automatically available in the template
    */
-  heroes: Hero[] = [];
+  heroes$: Observable<Hero[]>;
   selectedHero?: Hero;
 
   constructor(private heroesApiService: HeroesApiService) {
+    /**
+     * Assign the observable to the heroes$ property and subscribe to it in template using async pipe
+     */
+    this.heroes$ = this.heroesApiService.getHeroes();
   }
 
   /**
@@ -31,15 +36,7 @@ export class HeroesComponent implements OnInit {
    * It is called only once after constructor, when the directive is instantiated
    */
   ngOnInit() {
-    /**
-     * While you could call getHeroes() in the constructor, that's not the best practice.
-     * Reserve the constructor for minimal initialization such as wiring constructor parameters to properties.
-     * The constructor shouldn't call a function that makes HTTP requests to a remote server as a real data service would.
-     *
-     * Instead, call getHeroes() inside the ngOnInit lifecycle hook and let Angular call ngOnInit()
-     * at an appropriate time after constructing a HeroesComponent instance.
-     */
-    this.heroesApiService.getHeroes().subscribe(heroes => this.heroes = heroes);
+
   }
 
   onSelect(hero: Hero) {

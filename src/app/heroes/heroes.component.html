@@ -5,17 +5,21 @@
 <app-hero-details [hero]="selectedHero"></app-hero-details>
 
 <ul class="heroes">
-  <!-- The *ngFor is Angular's repeater directive. It repeats the host element for each element in a list -->
-  <!-- <li> - the host element -->
-  <!-- heroes - Holds the mock heroes list from the HeroesComponent class -->
-  <!-- hero - Template variable that the current hero object for each iteration through the list -->
-  <li *ngFor="let hero of heroes">
-    <!-- Angular's class binding can add and remove a CSS class conditionally -->
-    <!-- Add [class.some-css-class]="some-condition" to the element you want to style -->
+  <!-- The async pipe subscribes to an Observable or Promise and returns the latest value it has emitted. -->
+  <!-- When a new value is emitted, the async pipe marks the component to be checked for changes. -->
+  <!-- When the component gets destroyed, the async pipe unsubscribes automatically to avoid potential memory leaks. -->
+  <!-- When the reference of the expression changes, the async pipe automatically unsubscribes from the old Observable or Promise and subscribes to the new one.-->
+  <li *ngFor="let hero of heroes$ | async">
+    <button (click)="onSelect(hero)" [class.selected]="hero === selectedHero" type="button">
+      <span class="badge">{{hero.id}}</span>
+      <span class="name">{{hero.name}}</span>
+    </button>
+  </li>
+</ul>
 
-    <!-- In this example, when the current row hero is the same as the selectedHero, Angular adds the selected CSS class -->
-    <!-- When the two heroes are different, Angular removes the class -->
-    <!-- (see: https://angular.io/guide/attribute-binding#class-binding) -->
+<!-- An alternative syntax is to use the async pipe with *ngIf and assign the result to a local variable using "as" keyword -->
+<ul *ngIf="heroes$ | async as heroes" class="heroes">
+  <li *ngFor="let hero of heroes">
     <button (click)="onSelect(hero)" [class.selected]="hero === selectedHero" type="button">
       <span class="badge">{{hero.id}}</span>
       <span class="name">{{hero.name}}</span>
