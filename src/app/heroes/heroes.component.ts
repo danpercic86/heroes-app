@@ -19,16 +19,10 @@ export class HeroesComponent {
   /**
    * All public properties of a component class are automatically available in the template
    */
-  hero: Hero = {
-    id: 1,
-    name: 'Windstorm',
-  };
-
-  /**
-   * All public methods of a component class are automatically available in the template
-   * This is a method that will be called when the HeroDetailsComponent's (heroChange) event is emitted
-   */
-  onHeroChange(hero: Hero) {
-    this.hero = hero;
-  }
+  heroes: Hero[] = [
+    { id: 11, name: 'Dr Nice' },
+    { id: 12, name: 'Narco' },
+    { id: 13, name: 'Bombasto' },
+    { id: 14, name: 'Celeritas' },
+  ];
 }

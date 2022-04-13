@@ -1,29 +1,11 @@
-<!-- The HTML that HeroesComponent will render -->
+<h2>My Heroes</h2>
 
-<!-- [target]="value" is called Property Binding -->
-<!-- To bind to an element's property, enclose it in [], which identifies the property as a target property. -->
-<!-- A target property is the DOM property to which you want to assign a value -->
-<!-- (see: https://angular.io/guide/property-binding) -->
-<app-hero-details [hero]="hero"></app-hero-details>
-
-<!-- (target)="statement" is called Event Binding -->
-<!-- The Angular event binding syntax consists of a target event name within () to the left of an equal sign, -->
-<!-- and a quoted template statement to the right. -->
-<!-- (see: https://angular.io/guide/event-binding) -->
-<!-- In the following example, the target event name is heroChange and the template statement is onHeroChange() -->
-<app-hero-details (heroChange)="onHeroChange($event)" [hero]="hero"></app-hero-details>
-<!-- The $event object is used to access data emitted from child components. -->
-
-<!-- A shorthand for the above is to use direct assignment, as in the following example:-->
-<app-hero-details (heroChange)="hero = $event" [hero]="hero"></app-hero-details>
-
-<!-- Also a shorthand for the above is to use two way data binding:-->
-<!-- (see: https://angular.io/guide/two-way-binding) -->
-<app-hero-details [(hero)]="hero"></app-hero-details>
-<!-- For two-way data binding to work, the @Output() property must use the pattern, *input*Change, -->
-<!-- where *input* is the name of the @Input() property. -->
-<!-- For example, if the @Input() property is size, the @Output() property must be sizeChange. -->
-
-<!-- The above HeroDetailsComponent has a [hero] value property and a (heroChange) event. -->
-<!-- The [hero] property is an @Input(), so data can flow into the HeroDetailsComponent. -->
-<!-- The (heroChange) event is an @Output(), which lets data flow out of the HeroDetailsComponent to the parent component. -->
+<ul class="heroes">
+  <!-- The *ngFor is Angular's repeater directive. It repeats the host element for each element in a list -->
+  <!-- <li> - the host element -->
+  <!-- heroes - Holds the mock heroes list from the HeroesComponent class -->
+  <!-- hero - Template variable that the current hero object for each iteration through the list -->
+  <li *ngFor="let hero of heroes">
+    <span class="badge">{{hero.id}}</span> {{hero.name}}
+  </li>
+</ul>
