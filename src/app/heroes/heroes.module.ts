@@ -35,6 +35,13 @@ import { HeroesResolver } from './heroes.resolver';
         path: ':id',
         loadChildren: () => import('./hero-details/hero-details.module').then(m => m.HeroDetailsModule),
       },
+      {
+        /**
+         * Use ":" to specify a parameter.
+         */
+        path: ':id/edit',
+        loadChildren: () => import('./hero-edit/hero-edit.module').then(m => m.HeroEditModule),
+      },
     ]),
   ],
 })

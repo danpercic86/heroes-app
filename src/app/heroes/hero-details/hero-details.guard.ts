@@ -13,7 +13,7 @@ import { HeroesApiService } from '../heroes-api.service';
   providedIn: 'root',
 })
 /**
- * CanActivate is a interface that a class can implement to be a guard deciding if a route can be activated.
+ * CanActivate is an interface that a class can implement to be a guard deciding if a route can be activated.
  * If all guards return true, navigation continues.
  * If any guard returns false, navigation is cancelled.
  * If any guard returns a UrlTree, the current navigation is cancelled and a new navigation begins to the UrlTree returned from the guard.

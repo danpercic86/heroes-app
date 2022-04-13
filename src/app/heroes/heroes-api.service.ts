@@ -52,7 +52,7 @@ export class HeroesApiService {
      * this.http.get returns the body of the response as an untyped JSON object by default.
      * Applying the optional type specifier, <Hero[]> , adds TypeScript capabilities, which reduce errors during compile time.
      */
-    return this.http.get<Hero[]>('https://retoolapi.dev/7LV5Tg/heroes').pipe(
+    return this.http.get<Hero[]>('https://retoolapi.dev/DVnLZy/heroes').pipe(
       /**
        * This tap will ensure that we cache the heroes array in the service so that we won't have to make the same request again.
        */
