@@ -2,7 +2,7 @@
 <!-- Binding expressions in the template that refer to properties of hero must fail when hero is undefined -->
 <!-- When hero is undefined, the *ngIf removes the hero detail from the DOM -->
 <!-- When the component receives a hero, hero has a value and *ngIf puts the hero detail into the DOM -->
-<div *ngIf="hero">
+<div *ngIf="hero$ | async as hero">
   <!-- {{ }} is called interpolation. Interpolation refers to embedding expressions into marked up text  -->
   <!-- Angular replaces hero.name with the string value of the corresponding component property -->
   <!-- In this case, the value is Windstorm (see: https://angular.io/guide/interpolation) -->

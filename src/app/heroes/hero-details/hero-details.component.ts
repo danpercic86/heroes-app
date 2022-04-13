@@ -1,4 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { HeroesApiService } from '../heroes-api.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { combineLatest, map, Observable, switchMap } from 'rxjs';
 import { Hero } from '../models/hero.model';
 
 @Component({
@@ -7,18 +10,36 @@ import { Hero } from '../models/hero.model';
   styleUrls: ['./hero-details.component.scss'],
 })
 export class HeroDetailsComponent {
-  /**
-   * The @Input() decorator in a child component or directive signifies that the property can receive its value from its parent component.
-   * In this case, the hero property receives a Hero object from the HeroesComponent
-   * (see: https://angular.io/guide/inputs-outputs#sharing-data-between-child-and-parent-directives-and-components)
-   */
-  @Input() hero?: Hero;
+  readonly hero$: Observable<Hero>;
 
-  /**
-   * The @Output() decorator in a child component or directive lets data flow from the child to the parent.
-   * The child component uses the @Output() property to raise an event to notify the parent of the change.
-   * To raise an event, an @Output() must have the type of EventEmitter, which is a class in @angular/core that you use to emit custom events.
-   * (see: https://angular.io/guide/inputs-outputs#sending-data-to-a-parent-component)
-   */
-  @Output() readonly heroChange = new EventEmitter<Hero>();
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private heroesApiService: HeroesApiService,
+  ) {
+    /**
+     * Get an observable for heroId so that we will be notified when it changes.
+     */
+    const heroId$ = route.paramMap.pipe(map(params => Number(params.get('id'))));
+    const heroes$ = heroesApiService.getHeroes();
+
+    /**
+     * Combine the heroId$ and heroes$ observables into a single observable that emits
+     * the hero whose id matches the heroId.
+     */
+    this.hero$ = combineLatest([heroId$, heroes$]).pipe(
+      map(([heroId, heroes]) => heroes.find(hero => hero.id === heroId)),
+      switchMap(async foundHero => {
+        if (foundHero) {
+          return foundHero;
+        } else {
+          /**
+           * If the hero is not found, navigate to the heroes page.
+           */
+          await router.navigate(['/heroes']);
+          return {} as Hero;
+        }
+      }),
+    );
+  }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Hero } from './models/hero.model';
 import { HeroesApiService } from './heroes-api.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 /**
  @Component is a decorator function that specifies the Angular metadata for the component (such as styles, templates, and selector).
@@ -22,9 +23,8 @@ export class HeroesComponent implements OnInit {
    * All public properties of a component class are automatically available in the template
    */
   heroes$: Observable<Hero[]>;
-  selectedHero?: Hero;
 
-  constructor(private heroesApiService: HeroesApiService) {
+  constructor(private heroesApiService: HeroesApiService, private router: Router) {
     /**
      * Assign the observable to the heroes$ property and subscribe to it in template using async pipe
      */
@@ -40,6 +40,9 @@ export class HeroesComponent implements OnInit {
   }
 
   onSelect(hero: Hero) {
-    this.selectedHero = hero;
+    /**
+     * Navigate to the hero detail page when a hero is selected
+     */
+    return this.router.navigate(['/heroes', hero.id]);
   }
 }
