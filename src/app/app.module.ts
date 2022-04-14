@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AppService } from './app.service';
 
 export interface AppConfig {
   apiUrl: string;
@@ -29,11 +30,19 @@ export const APP_CONFIG = new InjectionToken<AppConfig>('This is the configurati
     {
       provide: APP_CONFIG,
       /**
-       * With useValue, you can provide a constant value for the token.
+       * If we need other service to configure our APP_CONFIG,
+       * then we can use a factory and inject into it the service that we need
        */
-      useValue: {
-        apiUrl: 'https://retoolapi.dev/DVnLZy/heroes',
+      useFactory: (appService: AppService) => {
+        console.log('APP_CONFIG initialized using AppService: ', appService.message);
+        return {
+          apiUrl: 'https://retoolapi.dev/DVnLZy/heroes',
+        };
       },
+      /**
+       * To use AppService in our factory we need to specify that it's a dependency
+       */
+      deps: [AppService],
     },
   ],
   bootstrap: [AppComponent],
