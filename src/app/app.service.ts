@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { Hero } from './heroes/models/hero.model';
 
 @Injectable({
@@ -10,6 +10,8 @@ import { Hero } from './heroes/models/hero.model';
   providedIn: 'root',
 })
 export class AppService {
+  heroes: Hero[] = [];
+
   constructor() {
     console.log('AppService constructor');
   }
@@ -22,6 +24,6 @@ export class AppService {
     return of([
       { id: 1, name: 'Superman', city: 'Metropolis', website: 'https://www.superman.com' },
       { id: 2, name: 'Batman', city: 'Gotham', website: 'https://www.batman.com' },
-    ]);
+    ]).pipe(tap(heroes => (this.heroes = heroes)));
   }
 }
