@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, Input, OnInit } from '@angular/core';
+import { Directive, HostBinding, HostListener, Input, OnInit } from '@angular/core';
 
 /**
  * The @Directive() decorator's configuration property specifies the directive's CSS attribute selector
@@ -15,17 +15,18 @@ export class HeroesDirective implements OnInit {
   @Input() isEven!: boolean;
 
   /**
-   * Directives change the appearance or behavior of DOM elements and Angular components
+   * Decorator that marks a DOM property as a host-binding property and supplies configuration metadata.
+   * Angular automatically checks host property bindings during change detection,
+   * and if a binding changes it updates the host element of the directive.
    */
-  constructor(private element: ElementRef) {
-  }
+  @HostBinding('style.backgroundColor') color!: string;
 
   /**
    * The @HostListener() decorator registers a DOM event handler for the directive
    */
   @HostListener('mouseenter')
   onMouseEnter() {
-    this.element.nativeElement.style.backgroundColor = 'yellow';
+    this.color = 'yellow';
   }
 
   /**
@@ -43,9 +44,9 @@ export class HeroesDirective implements OnInit {
 
   setStyles() {
     if (this.isOdd) {
-      this.element.nativeElement.style.backgroundColor = 'red';
+      this.color = 'red';
     } else {
-      this.element.nativeElement.style.backgroundColor = 'blue';
+      this.color = 'blue';
     }
   }
 }
