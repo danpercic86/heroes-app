@@ -57,6 +57,18 @@ import { AppService } from '../app.service';
    * and inject into any class from HeroesModule that asks for it, including child lazy loaded modules.
    */
   providers: [
+    {
+      /**
+       * Similarly to the tokens, you can also provide a provider for a service.
+       * This is actually the way to provide a service,
+       * and providers: [AppService] is just a shorthand
+       */
+      provide: AppService,
+      useClass: AppService,
+    },
+    /**
+     * This is a shorthand for providers: [{ provide: AppService, useClass: AppService }]
+     */
     AppService,
   ],
 })
