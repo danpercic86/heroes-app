@@ -4,6 +4,7 @@ import { HeroesComponent } from './heroes.component';
 import { RouterModule } from '@angular/router';
 import { HeroesResolver } from './heroes.resolver';
 import { HeroesDirective } from './heroes.directive';
+import { AppService } from '../app.service';
 
 
 @NgModule({
@@ -51,6 +52,21 @@ import { HeroesDirective } from './heroes.directive';
       },
     ]),
   ],
+  /**
+   * The providers array tells Angular to create a single, shared instance of AppService
+   * and inject into any class from HeroesModule that asks for it, including child lazy loaded modules.
+   */
+  providers: [
+    AppService,
+  ],
 })
 export class HeroesModule {
+
+  /**
+   * This instance of the AppService is from the HeroesModule scope,
+   * which means that is not the same instance as the AppService from the AppModule scope.
+   */
+  constructor(appService: AppService) {
+    console.log(appService.message);
+  }
 }

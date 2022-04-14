@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Heroes App';
+
+  /**
+   * This instance of the AppService is from the global (or root) scope
+   */
+  constructor(appService: AppService) {
+    console.log(appService.message);
+  }
 }
