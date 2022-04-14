@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppService } from './app.service';
+import { HeroesApiService } from './heroes/heroes-api.service';
 
 export interface AppConfig {
   apiUrl: string;
@@ -43,6 +44,15 @@ export const APP_CONFIG = new InjectionToken<AppConfig>('This is the configurati
        * To use AppService in our factory we need to specify that it's a dependency
        */
       deps: [AppService],
+    },
+    {
+      /**
+       * Different classes can provide the same service.
+       * The following code tells the injector to return a AppService instance
+       * when the component asks for heroes api using the HeroesApiService token.
+       */
+      provide: HeroesApiService,
+      useClass: AppService,
     },
   ],
   bootstrap: [AppComponent],
