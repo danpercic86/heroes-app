@@ -6,8 +6,12 @@
                fixedInViewport>
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item routerLink="/">Dashboard</a>
-      <a mat-list-item routerLink="/heroes">Heroes</a>
+      <a [routerLinkActiveOptions]="{exact: true}" mat-list-item routerLink="/"
+         routerLinkActive="mat-list-item-disabled">Dashboard</a>
+      <a [routerLinkActiveOptions]="{exact: true}" mat-list-item routerLink="/heroes"
+         routerLinkActive="mat-list-item-disabled">Heroes</a>
+      <a [routerLinkActiveOptions]="{exact: true}" mat-list-item routerLink="/address"
+         routerLinkActive="mat-list-item-disabled">Address</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

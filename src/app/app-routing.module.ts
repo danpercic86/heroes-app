@@ -1,18 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddressComponent } from './address/address.component';
 
 /**
  * Routes tell the Router which view to display when a user clicks a link or pastes a URL into the browser address bar.
  * This tells the router to match that URL to path: 'heroes' and display the HeroesComponent when the URL is something like localhost:4200/heroes.
  */
-const routes: Routes = [{
-  path: 'heroes',
-  /**
-   * Lazy loading speeds up application load time by splitting the application into multiple bundles and loading them on demand.
-   * To use lazy loading, provide the loadChildren property in the Route object, instead of the children property.
-   */
-  loadChildren: () => import('./heroes/heroes.module').then(m => m.HeroesModule),
-}];
+const routes: Routes = [
+  {
+    path: 'heroes',
+    /**
+     * Lazy loading speeds up application load time by splitting the application into multiple bundles and loading them on demand.
+     * To use lazy loading, provide the loadChildren property in the Route object, instead of the children property.
+     */
+    loadChildren: () => import('./heroes/heroes.module').then(m => m.HeroesModule),
+  },
+  {
+    path: 'address',
+    component: AddressComponent,
+  },
+];
 
 @NgModule({
   /**
