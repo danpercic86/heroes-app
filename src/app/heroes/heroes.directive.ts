@@ -1,4 +1,4 @@
-import { Directive, ElementRef } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 
 /**
  * The @Directive() decorator's configuration property specifies the directive's CSS attribute selector
@@ -7,11 +7,28 @@ import { Directive, ElementRef } from '@angular/core';
 @Directive({
   selector: '[appHeroes]',
 })
-export class HeroesDirective {
+export class HeroesDirective implements OnInit {
+  /**
+   * We can specify an alias for the directive's input property, in this case is appHeroes
+   */
+  @Input('appHeroes') isOdd!: boolean;
+  @Input() isEven!: boolean;
+
   /**
    * Directives change the appearance or behavior of DOM elements and Angular components
    */
   constructor(private element: ElementRef) {
-    this.element.nativeElement.style.backgroundColor = 'red';
+  }
+
+  ngOnInit() {
+    this.setStyles();
+  }
+
+  setStyles() {
+    if (this.isOdd) {
+      this.element.nativeElement.style.backgroundColor = 'red';
+    } else {
+      this.element.nativeElement.style.backgroundColor = 'blue';
+    }
   }
 }

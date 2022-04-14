@@ -5,9 +5,9 @@
   <!-- When a new value is emitted, the async pipe marks the component to be checked for changes. -->
   <!-- When the component gets destroyed, the async pipe unsubscribes automatically to avoid potential memory leaks. -->
   <!-- When the reference of the expression changes, the async pipe automatically unsubscribes from the old Observable or Promise and subscribes to the new one.-->
-  <li *ngFor="let hero of heroes">
+  <li *ngFor="let hero of heroes; let odd = odd; let even = even">
     <!-- To use the directive add it as an attribute to the element that you want to target -->
-    <button (click)="onSelect(hero)" appHeroes type="button">
+    <button (click)="onSelect(hero)" [appHeroes]="odd" [isEven]="even" type="button">
       <span class="badge">{{hero.id}}</span>
       <span class="name">{{hero.name}}</span>
     </button>
