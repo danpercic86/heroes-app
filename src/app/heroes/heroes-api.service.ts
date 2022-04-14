@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Hero } from './models/hero.model';
 import { of, tap } from 'rxjs';
+import { APP_CONFIG, AppConfig } from '../app.module';
 
 /**
  * @Injectable() decorator marks the class as one that participates in the dependency injection system.
@@ -27,9 +28,9 @@ export class HeroesApiService {
   heroes: Hero[] = [];
 
   /**
-   * To be able to make requests to the server, we need to inject an HttpClient object and use it
+   * To access the APP_CONFIG object, we need to inject it into the constructor using @Inject(APP_CONFIG).
    */
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, @Inject(APP_CONFIG) private config: AppConfig) {
   }
 
   /**
@@ -49,10 +50,9 @@ export class HeroesApiService {
       return of(this.heroes);
     }
     /**
-     * this.http.get returns the body of the response as an untyped JSON object by default.
-     * Applying the optional type specifier, <Hero[]> , adds TypeScript capabilities, which reduce errors during compile time.
+     * Then we can use the config object to get the heroes URL.
      */
-    return this.http.get<Hero[]>('https://retoolapi.dev/DVnLZy/heroes').pipe(
+    return this.http.get<Hero[]>(this.config.apiUrl).pipe(
       /**
        * This tap will ensure that we cache the heroes array in the service so that we won't have to make the same request again.
        */
