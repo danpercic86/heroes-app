@@ -5,6 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Getting Started
 
 * ``ng generate component <component name here>`` - creates a new component
+* ``ng generate directive <directive name here>`` - creates a new directive
 
 ## Development server
 

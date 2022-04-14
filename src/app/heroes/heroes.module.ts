@@ -3,13 +3,20 @@ import { CommonModule } from '@angular/common';
 import { HeroesComponent } from './heroes.component';
 import { RouterModule } from '@angular/router';
 import { HeroesResolver } from './heroes.resolver';
+import { HeroesDirective } from './heroes.directive';
 
 
 @NgModule({
   /**
    * Every component must be declared in exactly one NgModule.
    */
-  declarations: [HeroesComponent],
+  declarations: [
+    HeroesComponent,
+    /**
+     * Directives, as well as components, must be declared in exactly one NgModule.
+     */
+    HeroesDirective,
+  ],
   imports: [
     CommonModule,
     /**
