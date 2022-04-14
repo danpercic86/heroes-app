@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnInit } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, OnInit } from '@angular/core';
 
 /**
  * The @Directive() decorator's configuration property specifies the directive's CSS attribute selector
@@ -18,6 +18,23 @@ export class HeroesDirective implements OnInit {
    * Directives change the appearance or behavior of DOM elements and Angular components
    */
   constructor(private element: ElementRef) {
+  }
+
+  /**
+   * The @HostListener() decorator registers a DOM event handler for the directive
+   */
+  @HostListener('mouseenter')
+  onMouseEnter() {
+    this.element.nativeElement.style.backgroundColor = 'yellow';
+  }
+
+  /**
+   * It can capture the event that is emitted by the host element
+   */
+  @HostListener('mouseleave', ['$event'])
+  onMouseLeave(event: MouseEvent) {
+    console.log(event);
+    this.setStyles();
   }
 
   ngOnInit() {
